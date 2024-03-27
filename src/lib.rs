@@ -1,14 +1,9 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+//! AMPLIFY-WATCH
+//! A ```Rust``` monitoring library tool for AWS Amplify
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[allow(dead_code)]
+fn main() {
+    /* This is a list on everything we have to do */
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+    println!("Hello, world!");
 }

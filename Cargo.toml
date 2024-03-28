@@ -1,12 +1,18 @@
 [package]
 name = "amplify-watch"
 version = "0.1.0"
+license = "Apache-2.0 or MIT"
 edition = "2021"
+authors = ["Francisco Noel"]
+description = "A Rust monitoring library tool for AWS Amplify"
+readme = "README.md"
+homepage = "https://github.com/byfnoel/amplify-watch"
+repository = "https://github.com/byfnoel/amplify-watch"
+keywords = ["aws", "cli", "amplify", "monitoring", "rust"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aws-config = { version= "1.1.9", features = ["behavior-version-latest"]  }
-aws-sdk-dynamodb = "1.20.0"
+aws-config = { version = "1.1.7", features = ["behavior-version-latest"]  }
+aws-sdk-amplify = "1.19.0"
 tokio = { version = "1", features = ["full"]  }
-dotenv = "0.15.0"

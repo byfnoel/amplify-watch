@@ -15,4 +15,5 @@ keywords = ["aws", "cli", "amplify", "monitoring", "rust"]
 [dependencies]
 aws-config = { version = "1.1.7", features = ["behavior-version-latest"]  }
 aws-sdk-amplify = "1.19.0"
+chrono = "0.4.37"
 tokio = { version = "1", features = ["full"]  }

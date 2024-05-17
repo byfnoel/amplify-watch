@@ -1,8 +1,6 @@
-use amplify_watch::establish_connection;
-
-#[allow(unused_variables)]
+extern crate amplify_watch;
 
 fn main() {
-    let conn = establish_connection();
-    println!("Hello, world!");
+    let connection = amplify_watch::main();
+    println!("{:#?}", connection);
 }

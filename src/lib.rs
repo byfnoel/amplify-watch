@@ -3,19 +3,28 @@ use aws_sdk_amplify as amplify;
 use aws_sdk_amplify::operation::generate_access_logs::GenerateAccessLogs;
 use chrono::{DateTime, Local};
 
-#[tokio::main]
-async fn main() {
+#[::tokio::main]
+pub async fn main() -> Result<(), amplify::Error> {
     match establish_connection().await {
-        Ok(_) => todo!(),
-        Err(e) => eprintln!("Error: {}", e),
+        Ok(_) => {
+            get_logs(LogsRequestInput {
+                start_time: Local::now(),
+                end_time: Local::now(),
+                domain_name: "example.com".to_string(),
+                app_id: "app_id".to_string(),
+            })
+            .await;
+        }
+        Err(e) => {
+            println!("Error: {:?}", e);
+        }
     }
+    Ok(())
 }
 
-pub async fn establish_connection() -> Result<(), aws_sdk_amplify::Error> {
+pub async fn establish_connection() -> Result<(), amplify::Error> {
     let config = load_from_env().await;
     let client = amplify::Client::new(&config);
-
-    // make the call to `get_logs` here
     Ok(())
 }
 

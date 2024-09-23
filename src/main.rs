@@ -3,11 +3,12 @@ use amplify::{Client, Error};
 use aws_config::meta::region::RegionProviderChain;
 use aws_config::{from_env, BehaviorVersion};
 use aws_sdk_amplify as amplify;
-#[::tokio::main]
+
+#[tokio::main]
 async fn main() -> Result<(), Error> {
     match establish_connection().await {
         Ok(_) => {
-            println!("Successfully connected!")
+            println!("Successfully connected!");
         }
         Err(e) => {
             println!("Cannot establish connection because {:?}", e);
@@ -28,6 +29,7 @@ async fn establish_connection() -> Result<(), Error> {
     println!("Amplify apps: {:?}", apps);
     Ok(())
 }
+
 async fn check_amplify_job_status(
     client: &Client,
     app_id: &str,
@@ -45,7 +47,7 @@ async fn check_amplify_job_status(
     if let Some(job) = job_result.job() {
         if let Some(summary) = job.summary() {
             match summary.status() {
-                Some(summary) => match summary {
+                Some(status) => match status {
                     JobStatus::Pending => Ok("Job is pending".to_string()),
                     JobStatus::Provisioning => Ok("Job is provisioning".to_string()),
                     JobStatus::Running => Ok("Job is running".to_string()),
@@ -53,7 +55,6 @@ async fn check_amplify_job_status(
                     JobStatus::Succeed => Ok("Job has succeeded".to_string()),
                     JobStatus::Cancelling => Ok("Job is being cancelled".to_string()),
                     JobStatus::Cancelled => Ok("Job was cancelled".to_string()),
-                    _ => Ok("Unknown job status".to_string()),
                 },
                 None => Ok("Job status not available".to_string()),
             }

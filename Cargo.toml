@@ -4,15 +4,17 @@ version = "0.1.0"
 license = "Apache-2.0 or MIT"
 edition = "2021"
 authors = ["Francisco Noel"]
-description = "A Rust monitoring library tool for AWS Amplify"
+description = "A Rust monitoring tool for AWS Amplify"
 readme = "README.md"
 homepage = "https://github.com/byfnoel/amplify-watch"
 repository = "https://github.com/byfnoel/amplify-watch"
 keywords = ["aws", "cli", "amplify", "monitoring", "rust"]
 
 [dependencies]
-aws-config = { version = "1.1.7", features = ["behavior-version-latest"]  }
-aws-sdk-amplify = "1.58.0"
-tokio = { version = "1", features = ["full"]  }
+aws-config = "1.1.0"
+aws-sdk-amplify = "1.0.0"
+clap = { version = "4.4", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }
 colored = "2"
 dotenv = "0.15.0"

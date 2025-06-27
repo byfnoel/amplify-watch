@@ -1,22 +1,66 @@
-# AMPLIFY-WATCH
-A ```Rust``` monitoring library tool for AWS Amplify
+# Amplify Watch
 
-# BACKGROUND
-Amplify enables developers to develop and deploy cloud-powered
-mobile and web apps. With this library crate, you can directly
-inspect your amplify app status on demand.
+A simple command-line tool to monitor AWS Amplify app status in real-time.
 
-## USAGE
+## Features
 
-You can include `amplify-watch` to your own crate via any crates.io or as a git dependency. 
-For example, to include the `amplify-watch` crate from crates.io, add the following to your `Cargo.toml`:
+- Real-time monitoring of Amplify app build status
+- Configurable polling interval
 
-As a crates.io dependency:
+## Prerequisites
 
-```toml
-[dependencies]
-amplify-watch = "0.1.0"
-`````
+- Rust installed on your system
+- AWS credentials configured (via AWS CLI, environment variables)
+- Access to AWS Amplify service
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd amplify-watch
+```
+
+2. Build the project:
+
+```bash
+cargo build --release
+```
+
+## Usage
+
+### Watch App Status
+
+Monitor an Amplify app in real-time:
+
+```bash
+cargo run -- watch --app-id <YOUR_APP_ID> --branch <YOUR_BRANCH_TO_MONITOR>
+```
+
+Or with a custom polling interval:
+
+```bash
+cargo run -- watch --app-id <YOUR_APP_ID> --branch <YOUR_BRANCH_TO_MONITOR> --interval <INTERVAL_IN_SECONDS(Default:30 seconds)>
+```
+
+### Command Options
+
+- `--app-id, -a`: The Amplify app ID to monitor (required)
+- `--branch, -a`: The branch to monitor (required)
+- `--interval, -i`: Polling interval in seconds (default: 10)
+
+## AWS Configuration
+
+Make sure you have AWS credentials configured. You can do this by:
+
+1. Using AWS CLI: `aws configure`
+2. Setting environment variables:
+   ```bash
+   export AWS_ACCESS_KEY_ID=your_access_key
+   export AWS_SECRET_ACCESS_KEY=your_secret_key
+   export AWS_REGION=us-east-1
+   ```
 
 ## LICENSE
 
@@ -26,5 +70,4 @@ Licensed under either of
     ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
 * MIT license
     ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
-
-    at your option.
+at your option.

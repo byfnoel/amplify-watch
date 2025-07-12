@@ -5,6 +5,7 @@ use colored::*;
 use dotenv::dotenv;
 use std::time::Duration;
 use tokio::time;
+
 #[derive(Parser)]
 #[command(name = "amplify-watch")]
 #[command(about = "Monitor AWS Amplify app status in real-time")]
@@ -43,7 +44,7 @@ impl AmplifyMonitor {
         );
         println!("App ID: {}", app_id.bright_magenta());
         println!("Branch: {}", branch.bright_yellow());
-        println!("Polling interval: {} seconds", interval);
+        println!("Polling interval: {interval} seconds");
         println!("Press Ctrl+C to stop\n");
 
         let mut check_count = 0;
@@ -52,7 +53,7 @@ impl AmplifyMonitor {
 
         loop {
             check_count += 1;
-            println!("Check #{} of {}", check_count, max_checks);
+            println!("Check #{check_count} of {max_checks}");
 
             if check_count >= max_checks {
                 println!("{}", "Maximum checks reached. Stopping...".bright_yellow());
@@ -83,7 +84,7 @@ impl AmplifyMonitor {
                     }
                 }
                 Err(e) => {
-                    println!("Error fetching jobs: {}", e);
+                    println!("Error fetching jobs: {e}");
                 }
             }
             time::sleep(Duration::from_secs(interval)).await;

@@ -2,7 +2,7 @@ use aws_config::BehaviorVersion;
 use aws_sdk_amplify::Client;
 use clap::Parser;
 use colored::*;
-use dotenv::dotenv;
+use dotenvy::dotenv;
 use std::time::Duration;
 use tokio::time;
 
